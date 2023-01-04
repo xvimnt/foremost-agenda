@@ -2,6 +2,7 @@ import './App.css';
 import ItemList from './components/ItemList';
 import Modal from './components/Modal';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const notes = [
   {
@@ -38,6 +39,25 @@ function App() {
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('');
   const [filteredNotes, setFilteredNotes] = useState(notes);
+
+  const addNote = () => {
+    if(title && body) {
+      // Adding new note
+      var note = {
+        title: title,
+        body: body,
+        date: new Date().getDate(),
+      }
+
+      // axios.post('/api/addNote', note).then(res => {
+      //   setTitle('')
+      //   setBody('')
+      // }).then(err => console.error(err));
+
+    } else { 
+      alert('Empty fields');
+    }
+  }
 
 
   // Using the sort field to order the notes 
@@ -107,7 +127,7 @@ function App() {
         </div>
       </div>
       <ItemList notes={filteredNotes}></ItemList>
-      <Modal id="add" title="Add New Note">
+      <Modal id="add" title="Add New Note" submit={addNote}>
         <form>
           <div className="mb-3">
             <label htmlFor="title" className="form-label">Title</label>

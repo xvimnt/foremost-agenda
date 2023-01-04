@@ -1,4 +1,4 @@
-export default function Modal({id, children, title}) {
+export default function Modal({id, children, title, submit}) {
 
     return (
         <>
@@ -31,7 +31,7 @@ export default function Modal({id, children, title}) {
                             >
                                 Close
                             </button>
-                            <button type="button" className="btn btn-primary">
+                            <button type="button" className="btn btn-primary" onClick={submit}>
                                Save
                             </button>
                         </div>
