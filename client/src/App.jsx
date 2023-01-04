@@ -49,10 +49,10 @@ function App() {
         date: new Date().getDate(),
       }
 
-      // axios.post('/api/addNote', note).then(res => {
-      //   setTitle('')
-      //   setBody('')
-      // }).then(err => console.error(err));
+      axios.post('http://localhost:5000/api/addNote', note).then(res => {
+        setTitle('')
+        setBody('')
+      }).then(err => console.error(err));
 
     } else { 
       alert('Empty fields');
