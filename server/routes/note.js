@@ -17,11 +17,10 @@ router.get('/getNotes', (req,res) => {
 })
 
 // Update note
-router.put('/editNote/:id', (req,res) => {
-    const { id } = req.params;
-    const { title, body } = req.body;
+router.put('/editNote', (req,res) => {
+    const { title, body, id, date } = req.body;
 
-    noteSchema.updateOne({_id: id}, { $set: {title, body } }).then(data => res.json(data))
+    noteSchema.updateOne({_id: id}, { $set: {title, body, date } }).then(data => res.json(data))
     .catch(error => res.json({message: error}));
 })
 
