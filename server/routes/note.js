@@ -19,7 +19,6 @@ router.get('/getNotes', (req,res) => {
 // Update note
 router.put('/editNote', (req,res) => {
     const { title, body, id, date } = req.body;
-    console.log('editing', req.body)
 
     noteSchema.updateOne({_id: id}, { $set: {title, body, date } }).then(data => res.json(data))
     .catch(error => res.json({message: error}));
