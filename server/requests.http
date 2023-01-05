@@ -1,0 +1,12 @@
+###
+POST http://localhost:5000/api/addNote HTTP/1.1
+content-Type: application/json
+
+{
+    "title": "Finding Nemo",
+    "body": "Lions are depicted on vases dating to about 2600 before present that were excavated near Lake Urmia.[16] In Iranian mythology, the lion is a symbol of courage and monarchy. It is portrayed standing beside the kings in artifacts and sitting on the graves of knights.",
+    "date": "02-16-1998"
+}
+
+###
+GET http://localhost:5000/api/getNotes HTTP/1.1
