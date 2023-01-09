@@ -1,7 +1,7 @@
 import Item from "./Item";
 import Modal from "./Modal";
 import { useState } from "react";
-import axios from "axios";
+import { edit_note } from "../Api";
 
 
 export default function ItemList({notes}) {
@@ -22,25 +22,16 @@ export default function ItemList({notes}) {
   const editNote = () => {
     if (title && body && id) {
       // Edit Note
-      var note = {
-        title: title,
-        body: body,
-        date: new Date().toISOString().slice(0, 10),
-        id: id
-      }
-
-      axios.put(`http://localhost:5000/api/editNote`, note).then(res => {
+      edit_note(title,body,id).then(res => {
         setTitle('')
         setBody('')
         setId('')
         window.location.reload(false);
-      }).then(err => console.error(err));
-
+      })
     } else {
       alert('Empty fields');
     }
   }
-
 
     return (
         <>
