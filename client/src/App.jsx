@@ -2,7 +2,7 @@ import './App.css';
 import ItemList from './components/ItemList';
 import Modal from './components/Modal';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { create_note, get_all_notes } from './Api';
 
 const sortChoice = {
   title: 1,
@@ -20,26 +20,19 @@ function App() {
 
   // Get all the notes from our server
   useEffect(() => {
-    axios.get('http://localhost:5000/api/getNotes').then(res => {
+    get_all_notes().then(res => {
       setNotes(res.data)
     });
   }, [])
 
+  // Add a new note to our server
   const addNote = () => {
     if (title && body) {
-      // Adding new note
-      var note = {
-        title: title,
-        body: body,
-        date: new Date().toISOString().slice(0, 10),
-      }
-
-      axios.post('http://localhost:5000/api/addNote', note).then(res => {
+      create_note(title, body).then(() => {
         setTitle('')
         setBody('')
         window.location.reload(false);
-      }).then(err => console.error(err));
-
+      })
     } else {
       alert('Empty fields');
     }
